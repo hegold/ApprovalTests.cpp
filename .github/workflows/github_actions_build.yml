@@ -238,8 +238,12 @@ jobs:
       - uses: actions/checkout@master
 
       - name: install boost
+        uses: teddyking/dependency-action@v2.0.0
+        with:
+          deps: https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz
+      - name: set up boost environment
         run: |
-          ${boostroot} = "${env:BOOST_ROOT_1_72_0}"
+          ${boostroot} = "${env:HOME}/boost_1_72_0"
           echo "BOOST_ROOT=${boostroot}" >> ${env:GITHUB_ENV}
           echo "BOOST_INCLUDEDIR=${boostroot}\include" >> ${env:GITHUB_ENV}
           echo "BOOST_LIBRARYDIR=${boostroot}\lib" >> ${env:GITHUB_ENV}
